@@ -1,11 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "../axiosConfig";
+import DayIcon from "../components/DayIcon";
 
 function ThemePage() {
+  const { themeId } = useParams();
+  const [themeName, setThemeName] = useState("");
+  const [days, setDays] = useState([]);
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      try {
+        const response = await axios.get(`/active-themes/${themeId}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+        console.log("Fetched theme data:", response.data);
+        setThemeName(response.data.name); // Define o nome do tema
+        setDays(response.data.days || []);
+      } catch (error) {
+        console.error("Error fetching theme data:", error);
+      }
+    };
+
+    fetchTheme();
+  }, [themeId]);
+
   return (
     <div>
-      
+      <h1>{themeName}</h1> {/* Exibe o nome do tema */}
+      <div className="days">
+        {days.length > 0 ? (
+          days.map((day) => (
+            <DayIcon
+              key={day.day}
+              day={day.day}
+              locked={!day.isCompleted}
+              themeId={themeId}
+            />
+          ))
+        ) : (
+          <p>No days available for this theme.</p>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
-export default ThemePage
+export default ThemePage;

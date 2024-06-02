@@ -1,0 +1,34 @@
+.about-container {
+  display: flex;
+  height: 100vh;
+}
+
+.about-main {
+  flex: 1;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.about-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.about-item {
+  flex: 1;
+  display: flex;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.about-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}

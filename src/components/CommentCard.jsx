@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 
-function CommentCard() {
+function CommentCard({ comment, onDelete }) {
   return (
-    <div>
-      
+    <div className="comment-card">
+      <p>{comment.content}</p>
+      <button onClick={onDelete}>X</button>
     </div>
-  )
+  );
 }
 
-export default CommentCard
+export default CommentCard;

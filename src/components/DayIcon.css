@@ -1,0 +1,21 @@
+.day-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 50px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.day-icon.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.day-icon:hover {
+  background-color: #e0e0e0;
+}
