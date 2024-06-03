@@ -5,6 +5,7 @@ import "./LoginPage.css";
 
 function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,6 +20,13 @@ function LoginPage() {
       navigate("/themes");
     } catch (error) {
       console.error(error);
+      if (error.response && error.response.status === 404) {
+        setError("User not found");
+      } else if (error.response && error.response.status === 401) {
+        setError("Password incorrect");
+      } else {
+        setError("Invalid email or password");
+      }
     }
   };
 
@@ -43,6 +51,7 @@ function LoginPage() {
             value={form.password}
             className="login-input"
           />
+          {error && <p className="error">{error}</p>}
           <button type="submit" className="login-button">
             Log In
           </button>

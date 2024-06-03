@@ -29,10 +29,42 @@
 }
 
 .theme-card h2 {
-  margin-bottom: 20px; /* Adds space between the title and the button */
+  margin-bottom: 10px; /* Adds space between the title and the image */
+}
+
+.theme-card img.theme-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px; /* Adds space between the image and the description */
+}
+
+.theme-card p {
+  margin-bottom: 20px; /* Adds space between the description and the button */
 }
 
 .theme-card button {
   margin-top: auto;
   align-self: center; /* Centers the button horizontally */
+}
+
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: blue; /* cor do link */
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+  color: #747bff; /* cor ao passar o mouse */
 }

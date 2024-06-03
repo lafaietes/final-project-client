@@ -6,7 +6,7 @@ import CommentCard from "../components/CommentCard";
 function DayPage() {
   const { themeId, dayId } = useParams();
   const [day, setDay] = useState({});
-  const [themeName, setThemeName] = useState(""); // Estado para armazenar o nome do tema
+  const [themeName, setThemeName] = useState("");
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [showCommentBox, setShowCommentBox] = useState(false);
@@ -74,10 +74,11 @@ function DayPage() {
       <h1>
         {themeName} - Day {dayId}
       </h1>
-      {/* Exibe o nome do tema */}
-      <p>{day.goal}</p> {/* Exibe a meta da atividade */}
-      <p>{day.description}</p> {/* Exibe a descrição da atividade */}
-      <button onClick={handleComplete}>Mark as Complete</button>
+      <p>{day.goal}</p>
+      <p>{day.description}</p>
+      {!day.isCompleted && (
+        <button onClick={handleComplete}>Mark as Complete</button>
+      )}
       {showCommentBox && (
         <div className="comment-box">
           <textarea

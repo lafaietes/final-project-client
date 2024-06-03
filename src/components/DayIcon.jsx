@@ -4,7 +4,7 @@ import "./DayIcon.css";
 
 function DayIcon({ day, locked, themeId }) {
   return (
-    <Link to={`/theme/${themeId}/day/${day}`}>
+    <Link to={locked ? "#" : `/theme/${themeId}/day/${day}`}>
       <div className={`day-icon ${locked ? "locked" : ""}`}>
         {locked ? "🔒" : `Day ${day}`}
       </div>

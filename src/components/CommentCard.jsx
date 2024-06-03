@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-function CommentCard({ comment, onDelete }) {
+function CommentCard({ comment, onDelete, onUpdate }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedComment, setEditedComment] = useState(comment.content);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleUpdate = () => {
+    onUpdate(comment._id, editedComment);
+    setIsEditing(false);
+  };
+
   return (
     <div className="comment-card">
-      <p>{comment.content}</p>
-      <button onClick={onDelete}>X</button>
+      {isEditing ? (
+        <>
+          <textarea
+            value={editedComment}
+            onChange={(e) => setEditedComment(e.target.value)}
+          />
+          <button onClick={handleUpdate}>Submit</button>
+        </>
+      ) : (
+        <p>{comment.content}</p>
+      )}
+      <button onClick={handleEdit}>Edit</button>
+      <button onClick={onDelete}>Delete</button>
     </div>
   );
 }

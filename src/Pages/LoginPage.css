@@ -15,7 +15,7 @@ body {
 
 .login-logo {
   margin-bottom: 5px;
-  width: 350px; /* Adjust the size as needed */
+  width: 350px;
 }
 
 .login-right {
@@ -74,4 +74,11 @@ body {
 
 .signup-link a:hover {
   text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 10px;
+  text-align: left;
 }

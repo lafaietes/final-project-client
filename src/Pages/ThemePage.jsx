@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
+import Navbar from "../components/Navbar";
 
 function ThemePage() {
   const { themeId } = useParams();
@@ -15,7 +16,7 @@ function ThemePage() {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         console.log("Fetched theme data:", response.data);
-        setThemeName(response.data.name); // Define o nome do tema
+        setThemeName(response.data.name);
         setDays(response.data.days || []);
       } catch (error) {
         console.error("Error fetching theme data:", error);
@@ -27,14 +28,19 @@ function ThemePage() {
 
   return (
     <div>
-      <h1>{themeName}</h1> {/* Exibe o nome do tema */}
+      <Navbar
+        showLinks={{
+          logout: true,
+        }}
+      />
+      <h1>{themeName}</h1>
       <div className="days">
         {days.length > 0 ? (
-          days.map((day) => (
+          days.map((day, index) => (
             <DayIcon
               key={day.day}
               day={day.day}
-              locked={!day.isCompleted}
+              locked={index > 0 && !days[index - 1].isCompleted}
               themeId={themeId}
             />
           ))

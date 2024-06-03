@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
 import "./ThemeSelectionPage.css";
 
-function ThemeSelectionPage() {
+function ThemeSelectionPage({ handleLogout }) {
   const [themes, setThemes] = useState([]);
   const navigate = useNavigate();
 
@@ -24,14 +24,31 @@ function ThemeSelectionPage() {
 
   const handleStartTheme = async (themeId) => {
     try {
-      const response = await axios.post(
-        `/active-themes/themes/${themeId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
+      // Obter todos os temas ativos do usuário
+      const activeThemesResponse = await axios.get("/active-themes", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      const existingActiveTheme = activeThemesResponse.data.find(
+        (activeTheme) => activeTheme.name === themeId
       );
-      navigate(`/theme/${response.data._id}`);
+
+      // Se já houver um tema ativo com o mesmo nome, redirecione para ele
+      if (existingActiveTheme) {
+        navigate(`/theme/${existingActiveTheme._id}`);
+      } else {
+        // Caso contrário, crie um novo tema
+        const newThemeResponse = await axios.post(
+          `/active-themes/themes/${themeId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        navigate(`/theme/${newThemeResponse.data._id}`);
+      }
     } catch (error) {
       console.error("Error starting theme:", error);
     }
@@ -39,6 +56,9 @@ function ThemeSelectionPage() {
 
   return (
     <div className="theme-selection-container">
+      <button onClick={handleLogout} className="logout-button">
+        Logout
+      </button>{" "}
       <h1>Select a Theme</h1>
       <div className="themes">
         {themes.map((theme) => (
