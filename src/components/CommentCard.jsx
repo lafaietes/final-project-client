@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./CommentCard.css";
 
 function CommentCard({ comment, onDelete, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -26,8 +27,8 @@ function CommentCard({ comment, onDelete, onUpdate }) {
       ) : (
         <p>{comment.content}</p>
       )}
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={onDelete}>Delete</button>
+      <button onClick={handleEdit} className="edit-button">Edit</button>
+      <button onClick={() => onDelete(comment._id)} className="delete-button">Delete</button>
     </div>
   );
 }

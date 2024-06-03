@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "../axiosConfig";
 import CommentCard from "../components/CommentCard";
+import Navbar from "../components/Navbar";
 
 function DayPage() {
   const { themeId, dayId } = useParams();
@@ -20,7 +21,6 @@ function DayPage() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log("Theme data: ", response.data); // Verificar a resposta da API
 
         const dayData = response.data.days.find(
           (d) => d.day === parseInt(dayId)
@@ -42,14 +42,15 @@ function DayPage() {
 
   const handleCommentSubmit = async () => {
     try {
-      await axios.post(
+      const response = await axios.post(
         `/active-themes/${themeId}/day/${dayId}/complete`,
         { commentContent: comment },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
-      setComments([...comments, { content: comment }]);
+
+      setComments([...comments, response.data]);
       setComment("");
       setShowCommentBox(false);
       navigate(`/theme/${themeId}`);
@@ -69,8 +70,38 @@ function DayPage() {
     }
   };
 
+  const handleCommentUpdate = async (commentId, newContent) => {
+    try {
+      const response = await axios.put(
+        `/comments/comment/${commentId}`,
+        { content: newContent },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setComments(
+        comments.map((comment) =>
+          comment._id === commentId ? response.data : comment
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
+      <Navbar
+        showLinks={{
+          home: false,
+          about: false,
+          login: false,
+          signup: false,
+          themeSelection: true,
+          logout: true,
+          back: true,
+        }}
+      />
       <h1>
         {themeName} - Day {dayId}
       </h1>
@@ -78,6 +109,9 @@ function DayPage() {
       <p>{day.description}</p>
       {!day.isCompleted && (
         <button onClick={handleComplete}>Mark as Complete</button>
+      )}
+      {day.isCompleted && comments.length === 0 && (
+        <button onClick={() => setShowCommentBox(true)}>Add Comment</button>
       )}
       {showCommentBox && (
         <div className="comment-box">
@@ -90,15 +124,16 @@ function DayPage() {
         </div>
       )}
       <div className="comments">
-        {comments.map((comment, index) => (
+        {comments.map((comment) => (
           <CommentCard
-            key={index}
+            key={comment._id}
             comment={comment}
-            onDelete={() => handleCommentDelete(comment._id)}
+            onDelete={handleCommentDelete}
+            onUpdate={handleCommentUpdate}
           />
         ))}
       </div>
-      <Link to={`/theme/${themeId}`}>Back to Theme</Link>
+      {/* <Link to={`/theme/${themeId}`}>Back to Theme</Link> */}
     </div>
   );
 }

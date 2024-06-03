@@ -3,22 +3,30 @@ nav ul {
   display: flex;
   justify-content: flex-end;
 }
-
 nav ul li {
   margin-left: 20px;
 }
-
 nav ul li a {
   text-decoration: none;
 }
-
-.logout-link {
-  color: #1877f2;
+/* .logout-link {
+  color: #1877F2;
   cursor: pointer;
   text-decoration: none;
   font-size: 1rem;
-}
-
-.logout-link:hover {
+} */
+/* .logout-link:hover {
   text-decoration: underline;
+} */
+/* .back-button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-decoration: none; */
+/* } */
+.back-button:hover {
+  background-color: #555;
 }

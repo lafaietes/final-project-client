@@ -7,6 +7,9 @@ function Navbar({ showLinks }) {
     localStorage.removeItem("token");
     navigate("/");
   };
+  const handleBackClick = () => {
+    navigate(-1); // This navigates back to the previous page
+  };
   return (
     <nav>
       <ul>
@@ -37,9 +40,14 @@ function Navbar({ showLinks }) {
         )}
         {showLinks.logout && (
           <li>
-            <a onClick={handleLogoutClick} className="logout-link">
+            <a onClick={handleLogoutClick}>
               Logout
             </a>
+          </li>
+        )}
+        {showLinks.back && (
+          <li>
+            <Link onClick={handleBackClick}>Back</Link>
           </li>
         )}
       </ul>
@@ -47,3 +55,15 @@ function Navbar({ showLinks }) {
   );
 }
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
