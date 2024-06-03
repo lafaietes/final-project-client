@@ -3,12 +3,10 @@ import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
 import Navbar from "../components/Navbar";
-
 function ThemePage() {
   const { themeId } = useParams();
   const [themeName, setThemeName] = useState("");
   const [days, setDays] = useState([]);
-
   useEffect(() => {
     const fetchTheme = async () => {
       try {
@@ -22,14 +20,13 @@ function ThemePage() {
         console.error("Error fetching theme data:", error);
       }
     };
-
     fetchTheme();
   }, [themeId]);
-
   return (
     <div>
       <Navbar
         showLinks={{
+          themeSelection: true,
           logout: true,
         }}
       />
@@ -51,5 +48,4 @@ function ThemePage() {
     </div>
   );
 }
-
 export default ThemePage;

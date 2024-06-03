@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
 import "./ThemeSelectionPage.css";
+import Navbar from "../components/Navbar";
 
 function ThemeSelectionPage({ handleLogout }) {
   const [themes, setThemes] = useState([]);
@@ -56,14 +57,21 @@ function ThemeSelectionPage({ handleLogout }) {
 
   return (
     <div className="theme-selection-container">
-      <button onClick={handleLogout} className="logout-button">
+      <Navbar
+        showLinks={{
+          logout: true,
+        }}
+      />
+      {/* <button onClick={handleLogout} className="logout-button">
         Logout
-      </button>{" "}
+      </button> */}
       <h1>Select a Theme</h1>
       <div className="themes">
         {themes.map((theme) => (
           <div key={theme._id} className="theme-card">
             <h2>{theme.name}</h2>
+            <img src={theme.image} alt={theme.name} className="theme-image" />
+            <p>{theme.descriptionTheme}</p>
             <button onClick={() => handleStartTheme(theme._id)}>Start</button>
           </div>
         ))}

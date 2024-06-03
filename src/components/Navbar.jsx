@@ -1,15 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-
 function Navbar({ showLinks }) {
   const navigate = useNavigate();
-
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
-
   return (
     <nav>
       <ul>
@@ -21,6 +18,11 @@ function Navbar({ showLinks }) {
         {showLinks.about && (
           <li>
             <Link to="/about">About</Link>
+          </li>
+        )}
+        {showLinks.themeSelection && (
+          <li>
+            <Link to="/themes">Themes</Link>
           </li>
         )}
         {showLinks.login && (
@@ -44,5 +46,4 @@ function Navbar({ showLinks }) {
     </nav>
   );
 }
-
 export default Navbar;
