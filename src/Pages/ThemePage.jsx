@@ -38,12 +38,16 @@ function ThemePage() {
       <div className="days-container">
         {days.length > 0 ? (
           days.map((day, index) => (
-            <DayIcon
-              key={day.day}
-              day={day.day}
-              locked={index > 0 && !days[index - 1].isCompleted}
-              themeId={themeId}
-            />
+            <React.Fragment key={day.day}>
+              <DayIcon
+                day={day.day}
+                locked={index > 0 && !days[index - 1].isCompleted}
+                themeId={themeId}
+                isCompleted={day.isCompleted}
+                isCurrent={index === 0 || days[index - 1].isCompleted}
+                position={index + 1}
+              />
+            </React.Fragment>
           ))
         ) : (
           <p className="no-days-message">No days available for this theme.</p>

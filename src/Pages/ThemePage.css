@@ -6,6 +6,7 @@
     min-height: 100vh;
     padding: 20px;
     font-family: 'Arial', sans-serif;
+    overflow-y: auto; /* Add scroll bar */
   }
   
   .theme-title {
@@ -15,10 +16,9 @@
   }
   
   .days-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    position: relative;
+    width: 300px; /* Adjust width as necessary */
+    height: 1500px; /* Adjust height as necessary */
   }
   
   .no-days-message {

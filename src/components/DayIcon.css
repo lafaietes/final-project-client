@@ -1,32 +1,67 @@
-/* DayIcon.css */
+.day-icon-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-icon-container.position-1 { top: 0; left: 50%; transform: translateX(-50%); }
+.day-icon-container.position-2 { top: 100px; left: 5%; }
+.day-icon-container.position-3 { top: 220px; left: 5%; }
+.day-icon-container.position-4 { top: 300px; right: 30%; }
+.day-icon-container.position-5 { top: 385px; right: 2%; }
+.day-icon-container.position-6 { top: 510px; right: 3%; }
+.day-icon-container.position-7 { top: 600px; left: 50%; transform: translateX(-50%); }
+.day-icon-container.position-8 { top: 690px; left: 2%; }
+.day-icon-container.position-9 { top: 810px; left: -5%; }
+.day-icon-container.position-10 { top: 930px; left: 15%; }
+.day-icon-container.position-11 { top: 980px; right: 15%; }
+.day-icon-container.position-12 { top: 1090px; right: -5%; }
+.day-icon-container.position-13 { top: 1210px; right: 2%; }
+.day-icon-container.position-14 { top: 1300px; left: 50%; transform: translateX(-50%); }
+.day-icon-container.position-15 { top: 1390px; left: 2%; }
+.day-icon-container.position-16 { top: 1510px; left: -5%; }
+.day-icon-container.position-17 { top: 1630px; left: 15%; }
+.day-icon-container.position-18 { top: 1680px; right: 15%; }
+.day-icon-container.position-19 { top: 1790px; right: -5%; }
+.day-icon-container.position-20 { top: 1910px; right: 2%; }
+.day-icon-container.position-21 { top: 2000px; left: 50%; transform: translateX(-50%); }
+
 .day-icon-link {
   text-decoration: none;
 }
 
 .day-icon {
-  width: 80px;
-  height: 80px;
-  border: 3px solid #4CAF50;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
   transition: background-color 0.3s ease, transform 0.3s ease;
   font-size: 1.5em;
-  color: #4CAF50;
+  color: white;
+  margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  background-color: #f0f0f0; /* Default background color */
+}
+
+.day-icon.completed {
+  background-color: #4CAF50; /* Green */
+}
+
+.day-icon.current {
+  background-color: #FFEB3B; /* Yellow */
+  color: black;
 }
 
 .day-icon.locked {
-  border-color: #d9534f;
-  color: #d9534f;
+  background-color: #d9534f; /* Red */
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 .day-icon:hover:not(.locked) {
-  background-color: #f0f0f0;
   transform: scale(1.1);
 }
