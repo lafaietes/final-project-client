@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
-import "./SignupPage.css";
 
 function SignupPage() {
   const [form, setForm] = useState({
@@ -60,68 +59,56 @@ function SignupPage() {
   };
 
   return (
-    <div className="signup-container">
-      <img src="/21.png" alt="Logo" className="signup-logo" />
-      <div className="signup-right">
-        <h2>Create a new account</h2>
-        <hr />
-        <form onSubmit={handleSubmit} className="signup-form">
-          <div className="name-fields">
-            <div className="input-container">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+      <img src="/21.png" alt="Logo" className="mb-5 w-80" />
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h2 className="text-2xl font text-cyan-800 mb-4">Create a new account</h2>
+        <hr className="mb-4" />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="flex space-x-2">
+            <div className="w-1/2">
               <input
                 name="name"
-                placeholder="First Name"
+                placeholder="First name"
                 onChange={handleChange}
                 value={form.name}
-                className={`signup-input half-width ${
-                  errors.name ? "error-border" : ""
-                }`}
+                className={`w-full p-3 border rounded-lg ${errors.name ? "border-red-500" : ""}`}
               />
-              {errors.name && <p className="error">{errors.name}</p>}
+              {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
-            <div className="input-container">
+            <div className="w-1/2">
               <input
                 name="lastName"
-                placeholder="Last Name"
+                placeholder="Surname"
                 onChange={handleChange}
                 value={form.lastName}
-                className={`signup-input half-width ${
-                  errors.lastName ? "error-border" : ""
-                }`}
+                className={`w-full p-3 border rounded-lg ${errors.lastName ? "border-red-500" : ""}`}
               />
-              {errors.lastName && <p className="error">{errors.lastName}</p>}
+              {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
             </div>
           </div>
-          <div className="input-container">
-            <input
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              value={form.email}
-              className={`signup-input ${errors.email ? "error-border" : ""}`}
-            />
-            {errors.email && <p className="error">{errors.email}</p>}
-          </div>
-          <div className="input-container">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={form.password}
-              className={`signup-input ${
-                errors.password ? "error-border" : ""
-              }`}
-            />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
-          <button type="submit" className="signup-button">
-            Sign Up
-          </button>
-          {serverError && <p className="error">{serverError}</p>}
+          <input
+            name="email"
+            placeholder="someone@example.com"
+            onChange={handleChange}
+            value={form.email}
+            className={`w-full p-3 border rounded-lg ${errors.email ? "border-red-500" : ""}`}
+          />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+          <input
+            type="password"
+            name="password"
+            placeholder="Create password"
+            onChange={handleChange}
+            value={form.password}
+            className={`w-full p-3 border rounded-lg ${errors.password ? "border-red-500" : ""}`}
+          />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+          <button type="submit" className="bg-cyan-800 text-white w-full py-3 rounded-lg mt-2">Sign Up</button>
+          {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
         </form>
-        <p className="login-link">
-          Already have an account? <a href="/login">Login</a>
+        <p className="mt-4 text-sm">
+          Already have an account? <a href="/login" className="text-cyan-800 hover:underline">Login</a>
         </p>
       </div>
     </div>

@@ -102,38 +102,40 @@ function DayPage() {
           back: true,
         }}
       />
-      <h1>
-        {themeName} - Day {dayId}
-      </h1>
-      <p>{day.goal}</p>
-      <p>{day.description}</p>
-      {!day.isCompleted && (
-        <button onClick={handleComplete}>Mark as Complete</button>
-      )}
-      {day.isCompleted && comments.length === 0 && (
-        <button onClick={() => setShowCommentBox(true)}>Add Comment</button>
-      )}
-      {showCommentBox && (
-        <div className="comment-box">
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button onClick={handleCommentSubmit}>Submit</button>
-          <button onClick={() => setShowCommentBox(false)}>X</button>
+      <div className="pt-16"> {/* Ajuste o espaçamento superior */}
+        <h1>
+          {themeName} - Day {dayId}
+        </h1>
+        <p>{day.goal}</p>
+        <p>{day.description}</p>
+        {!day.isCompleted && (
+          <button onClick={handleComplete}>Mark as Complete</button>
+        )}
+        {day.isCompleted && comments.length === 0 && (
+          <button onClick={() => setShowCommentBox(true)}>Add Comment</button>
+        )}
+        {showCommentBox && (
+          <div className="comment-box">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button onClick={handleCommentSubmit}>Submit</button>
+            <button onClick={() => setShowCommentBox(false)}>X</button>
+          </div>
+        )}
+        <div className="comments">
+          {comments.map((comment) => (
+            <CommentCard
+              key={comment._id}
+              comment={comment}
+              onDelete={handleCommentDelete}
+              onUpdate={handleCommentUpdate}
+            />
+          ))}
         </div>
-      )}
-      <div className="comments">
-        {comments.map((comment) => (
-          <CommentCard
-            key={comment._id}
-            comment={comment}
-            onDelete={handleCommentDelete}
-            onUpdate={handleCommentUpdate}
-          />
-        ))}
+        {/* <Link to={`/theme/${themeId}`}>Back to Theme</Link> */}
       </div>
-      {/* <Link to={`/theme/${themeId}`}>Back to Theme</Link> */}
     </div>
   );
 }

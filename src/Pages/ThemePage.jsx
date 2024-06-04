@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
 import Navbar from "../components/Navbar";
-import "./ThemePage.css"; // Import the new CSS file
 
 function ThemePage() {
   const { themeId } = useParams();
@@ -27,31 +26,33 @@ function ThemePage() {
   }, [themeId]);
 
   return (
-    <div className="theme-page">
+    <div>
       <Navbar
         showLinks={{
           themeSelection: true,
           logout: true,
         }}
       />
-      <h1 className="theme-title">{themeName}</h1>
-      <div className="days-container">
-        {days.length > 0 ? (
-          days.map((day, index) => (
-            <React.Fragment key={day.day}>
-              <DayIcon
-                day={day.day}
-                locked={index > 0 && !days[index - 1].isCompleted}
-                themeId={themeId}
-                isCompleted={day.isCompleted}
-                isCurrent={index === 0 || days[index - 1].isCompleted}
-                position={index + 1}
-              />
-            </React.Fragment>
-          ))
-        ) : (
-          <p className="no-days-message">No days available for this theme.</p>
-        )}
+      <div className="pt-24 flex flex-col items-center py-8 px-4">
+        <h1 className="text-3xl font-bold text-green-600 mb-8">{themeName}</h1>
+        <div className="relative w-72 h-[1500px]">
+          {days.length > 0 ? (
+            days.map((day, index) => (
+              <React.Fragment key={day.day}>
+                <DayIcon
+                  day={day.day}
+                  locked={index > 0 && !days[index - 1].isCompleted}
+                  themeId={themeId}
+                  isCompleted={day.isCompleted}
+                  isCurrent={index === 0 || days[index - 1].isCompleted}
+                  position={index + 1}
+                />
+              </React.Fragment>
+            ))
+          ) : (
+            <p className="text-gray-700 text-lg">No days available for this theme.</p>
+          )}
+        </div>
       </div>
     </div>
   );

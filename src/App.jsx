@@ -10,38 +10,14 @@ import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/themes"
-          element={
-            <ThemeSelectionPage
-              showLinks={{
-                home: true,
-                about: true,
-                login: false,
-                signup: false,
-                logout: true,
-              }}
-            />
-          }
-        />
-        <Route
-          path="/theme/:themeId"
-          element={
-            <ThemePage
-              showLinks={{
-                login: false,
-                signup: false,
-                logout: true,
-              }}
-            />
-          }
-        />
+        <Route path="/themes" element={<ThemeSelectionPage showLinks={{ home: true, about: true, login: false, signup: false, logout: true }} />} />
+        <Route path="/theme/:themeId" element={<ThemePage showLinks={{ login: false, signup: false, logout: true }} />} />
         <Route path="/theme/:themeId/day/:dayId" element={<DayPage />} />
       </Routes>
     </div>

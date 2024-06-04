@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
-import "./LoginPage.css";
 
 function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -31,17 +30,17 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-container">
-      <img src="/21.png" alt="Logo" className="login-logo" />
-      <div className="login-right">
-        <p>Access your account:</p>
-        <form onSubmit={handleSubmit} className="login-form">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+      <img src="/21.png" alt="Logo" className="mb-5 w-80" />
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h2 className="text-2xl text-cyan-800 mb-4">Access your account:</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="email"
             placeholder="Email"
             onChange={handleChange}
             value={form.email}
-            className="login-input"
+            className="w-full p-3 border rounded-lg"
           />
           <input
             type="password"
@@ -49,15 +48,13 @@ function LoginPage() {
             placeholder="Password"
             onChange={handleChange}
             value={form.password}
-            className="login-input"
+            className="w-full p-3 border rounded-lg"
           />
-          {error && <p className="error">{error}</p>}
-          <button type="submit" className="login-button">
-            Log In
-          </button>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <button type="submit" className="bg-cyan-800 text-white w-full py-3 rounded-lg mt-2">Log In</button>
         </form>
-        <p className="signup-link">
-          Don't have an account? <a href="/signup">Sign Up</a>
+        <p className="mt-4 text-sm">
+          Don't have an account? <a href="/signup" className="text-cyan-800 hover:underline">Sign Up</a>
         </p>
       </div>
     </div>
