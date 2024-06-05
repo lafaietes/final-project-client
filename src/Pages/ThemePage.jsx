@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
@@ -8,6 +8,7 @@ function ThemePage() {
   const { themeId } = useParams();
   const [themeName, setThemeName] = useState("");
   const [days, setDays] = useState([]);
+  const currentDayRef = useRef(null);
 
   useEffect(() => {
     const fetchTheme = async () => {
@@ -25,8 +26,14 @@ function ThemePage() {
     fetchTheme();
   }, [themeId]);
 
+  useEffect(() => {
+    if (currentDayRef.current) {
+      currentDayRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [days]);
+
   return (
-    <div>
+    <div style={{ backgroundImage: 'url("path-to-your-background-image.jpg")', backgroundSize: 'cover', minHeight: '100vh' }}>
       <Navbar
         showLinks={{
           themeSelection: true,
@@ -46,6 +53,7 @@ function ThemePage() {
                   isCompleted={day.isCompleted}
                   isCurrent={index === 0 || days[index - 1].isCompleted}
                   position={index + 1}
+                  ref={index === 0 || days[index - 1].isCompleted ? currentDayRef : null}
                 />
               </React.Fragment>
             ))
