@@ -1,8 +1,11 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-pattern":
+          "url('/background.png')",
+      },
       keyframes: {
         crossfadeIn: {
           "0%": { opacity: 0 },

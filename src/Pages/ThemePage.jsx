@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
 import Navbar from "../components/Navbar";
+import ThemeSelectionPage from "./ThemeSelectionPage";
 
 function ThemePage() {
   const { themeId } = useParams();
@@ -16,7 +17,6 @@ function ThemePage() {
         const response = await axios.get(`/active-themes/${themeId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
-        console.log("Fetched theme data:", response.data);
         setThemeName(response.data.name);
         setDays(response.data.days || []);
       } catch (error) {
@@ -33,7 +33,7 @@ function ThemePage() {
   }, [days]);
 
   return (
-    <div style={{ backgroundImage: 'url("path-to-your-background-image.jpg")', backgroundSize: 'cover', minHeight: '100vh' }}>
+    <div>
       <Navbar
         showLinks={{
           themeSelection: true,
@@ -41,7 +41,7 @@ function ThemePage() {
         }}
       />
       <div className="pt-24 flex flex-col items-center py-8 px-4">
-        <h1 className="text-3xl font-bold text-green-600 mb-8">{themeName}</h1>
+        <h1 className="text-3xl font-bold text-green-600 mb-8">Your {themeName} path</h1>
         <div className="relative w-72 h-[1500px]">
           {days.length > 0 ? (
             days.map((day, index) => (
@@ -53,7 +53,7 @@ function ThemePage() {
                   isCompleted={day.isCompleted}
                   isCurrent={index === 0 || days[index - 1].isCompleted}
                   position={index + 1}
-                  ref={index === 0 || days[index - 1].isCompleted ? currentDayRef : null}
+                  ref={day.isCurrent ? currentDayRef : null}
                 />
               </React.Fragment>
             ))

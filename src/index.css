@@ -1,1 +1,7 @@
-@import 'tailwindcss/tailwind.css';
+@import "tailwindcss/tailwind.css";
+@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Lexend+Mega&family=Limelight&display=swap");
+
+* {
+font-family: "Belleza", sans-serif;
+}
+

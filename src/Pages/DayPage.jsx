@@ -90,21 +90,16 @@ function DayPage() {
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen place-content-center">
+    <div className="bg-gray-100 min-h-screen flex flex-col items-center place-content-center">
       <Navbar
         showLinks={{
-          home: false,
-          about: false,
-          login: false,
-          signup: false,
-          themeSelection: true,
           logout: true,
           back: true,
         }}
       />
-      <div className="pt-20 px-6 max-w-4xl mx-auto">
-        <div className="bg-white p-8 rounded-xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-          <h1 className="text-4xl font-bold text-blue-700 mb-6">
+      <div className="pt-20 px-6 max-w-4xl w-full">
+        <div className="bg-white p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl text-center">
+          <h1 className="text-4xl font-bold text-emerald-700 mb-6">
             {themeName} - Day {dayId}
           </h1>
           <p className="text-2xl text-gray-800 mb-4">{day.goal}</p>
@@ -112,7 +107,7 @@ function DayPage() {
           {!day.isCompleted && (
             <button
               onClick={handleComplete}
-              className="bg-green-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-700 transition-colors duration-300"
+              className="bg-emerald-700 text-white px-4 py-2 rounded-full shadow-md hover:bg-emerald-900 transition-colors duration-300"
             >
               Mark as Complete
             </button>
@@ -120,7 +115,7 @@ function DayPage() {
           {day.isCompleted && comments.length === 0 && (
             <button
               onClick={() => setShowCommentBox(true)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300"
+              className="bg-emerald-700 text-white px-4 py-2 rounded-full shadow-md hover:bg-emerald-900 transition-colors duration-300"
             >
               Register your feedback
             </button>
@@ -130,20 +125,20 @@ function DayPage() {
               <textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg mb-4"
+                className="w-full p-3 border border-gray-300 rounded-lg mb-4 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
                 rows="4"
-                placeholder="Write your comment here..."
+                placeholder="Register your feedback here. How do you feel about this activities? What did you learn today?"
               />
-              <div className="flex justify-end space-x-4">
+              <div className="flex justify-center space-x-4">
                 <button
                   onClick={handleCommentSubmit}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300"
+                  className="bg-emerald-700 text-white px-4 py-2 rounded-full shadow-md hover:bg-emerald-900 transition-colors duration-300"
                 >
                   Save
                 </button>
                 <button
                   onClick={() => setShowCommentBox(false)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-red-700 transition-colors duration-300"
+                  className="bg-gray-400 text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-600 transition-colors duration-300"
                 >
                   Cancel
                 </button>

@@ -17,7 +17,13 @@ function Navbar({ showLinks }) {
     <nav className="bg-emerald-950 bg-opacity-75 backdrop-filter backdrop-blur-lg fixed top-0 w-full z-50 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-xl font-bold">
-          <Link to="/">My App</Link>
+          <Link to="/">
+            <img
+              src="/icon-navbar.png"
+              alt="App Icon"
+              style={{ height: "32px", width: "auto" }}
+            />
+          </Link>
         </div>
         <div className="flex space-x-4">
           {showLinks.home && (
@@ -41,7 +47,7 @@ function Navbar({ showLinks }) {
               to="/themes"
               className="text-white hover:text-blue-400 transition duration-300"
             >
-              Themes
+              Trails
             </Link>
           )}
           {showLinks.login && (
@@ -60,20 +66,20 @@ function Navbar({ showLinks }) {
               Sign-up
             </Link>
           )}
-          {showLinks.logout && (
-            <button
-              onClick={handleLogoutClick}
-              className="text-white hover:text-red-400 transition duration-300"
-            >
-              Logout
-            </button>
-          )}
           {showLinks.back && (
             <button
               onClick={handleBackClick}
               className="text-white hover:text-blue-400 transition duration-300"
             >
               Back
+            </button>
+          )}
+          {showLinks.logout && (
+            <button
+              onClick={handleLogoutClick}
+              className="text-white hover:text-red-400 transition duration-300"
+            >
+              Logout
             </button>
           )}
         </div>

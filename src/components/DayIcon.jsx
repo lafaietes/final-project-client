@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import "./DayIcon.css";
 
-function DayIcon({ day, locked, themeId, isCompleted, isCurrent, position }) {
+const DayIcon = forwardRef(({ day, locked, themeId, isCompleted, isCurrent, position }, ref) => {
   return (
-    <div className={`day-icon-container position-${position}`}>
+    <div className={`day-icon-container position-${position}`} ref={ref}>
       <Link
         to={locked ? "#" : `/theme/${themeId}/day/${day}`}
         className={`day-icon-link ${locked ? "locked" : ""}`}
@@ -23,6 +23,6 @@ function DayIcon({ day, locked, themeId, isCompleted, isCurrent, position }) {
       <Tooltip id={`tooltip-${day}`} />
     </div>
   );
-}
+});
 
 export default DayIcon;

@@ -180,7 +180,7 @@ function ThemeSelectionPage({ handleLogout }) {
                     key={theme._id}
                     className={`w-16 h-16 rounded-full overflow-hidden border-2 ${
                       index === currentIndex
-                        ? "border-blue-500"
+                        ? "border-cyan-600"
                         : "border-transparent"
                     }`}
                     onClick={() => selectTheme(index)}
