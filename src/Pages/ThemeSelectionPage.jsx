@@ -14,6 +14,7 @@ function ThemeSelectionPage({ handleLogout }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ function ThemeSelectionPage({ handleLogout }) {
           headers: { Authorization: `Bearer ${token}` },
         });
         setThemes(response.data);
+        setBackgroundImage(response.data[0]?.image || ""); // Set initial background image
       } catch (error) {
         if (error.response && error.response.status === 401) {
           navigate("/login");
@@ -40,6 +42,12 @@ function ThemeSelectionPage({ handleLogout }) {
 
     fetchThemes();
   }, [navigate]);
+
+  useEffect(() => {
+    if (!isAnimating) {
+      setBackgroundImage(themes[currentIndex]?.image || "");
+    }
+  }, [isAnimating, currentIndex, themes]);
 
   const handleStartTheme = async (themeId) => {
     const token = localStorage.getItem("token");
@@ -119,7 +127,7 @@ function ThemeSelectionPage({ handleLogout }) {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col">
+    <div className="relative min-h-screen flex flex-col bg-gray-900">
       <Navbar showLinks={{ logout: true }} />
       <div className="absolute top-14 w-full z-20 flex justify-center py-4">
         <h1 className="text-4xl font-bold text-white">Select your trail:</h1>
@@ -133,17 +141,9 @@ function ThemeSelectionPage({ handleLogout }) {
                   isAnimating ? "opacity-0" : "opacity-100"
                 }`}
                 style={{
-                  backgroundImage: `url(${themes[currentIndex].image})`,
+                  backgroundImage: `url(${backgroundImage})`,
                 }}
               ></div>
-              {isAnimating && (
-                <div
-                  className={`absolute w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out animate-crossfadeIn`}
-                  style={{
-                    backgroundImage: `url(${themes[nextIndex].image})`,
-                  }}
-                ></div>
-              )}
             </div>
           )}
         </div>

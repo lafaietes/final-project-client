@@ -139,7 +139,7 @@ function DayPage() {
                   onClick={handleCommentSubmit}
                   className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300"
                 >
-                  Submit
+                  Save
                 </button>
                 <button
                   onClick={() => setShowCommentBox(false)}
@@ -152,7 +152,7 @@ function DayPage() {
           )}
           {comments.length > 0 && (
             <div className="mt-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Comments</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Your feedback</h2>
               <div className="space-y-4">
                 {comments.map((comment) => (
                   <CommentCard

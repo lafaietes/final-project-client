@@ -26,7 +26,7 @@ function CommentCard({ comment, onDelete, onUpdate }) {
           />
           <div className="flex justify-end space-x-2">
             <button onClick={handleUpdate} className="text-blue-500 text-xs">
-              Submit
+              Save
             </button>
             <button
               onClick={() => setIsEditing(false)}
