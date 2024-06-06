@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
+import { Link } from "react-router-dom"
 
 // Página de login para autenticar usuários
 function LoginPage() {
@@ -61,9 +62,9 @@ function LoginPage() {
         </form>
         <p className="mt-4 text-sm">
           Don't have an account?{" "}
-          <a href="/signup" className="text-cyan-800 hover:underline">
+          <Link to="/signup" className="text-cyan-800 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

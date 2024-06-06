@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
+import { Link } from "react-router-dom"
 
 function SignupPage() {
   const [form, setForm] = useState({
@@ -108,7 +109,7 @@ function SignupPage() {
           {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
         </form>
         <p className="mt-4 text-sm">
-          Already have an account? <a href="/login" className="text-cyan-800 hover:underline">Login</a>
+          Already have an account? <Link to="/login" className="text-cyan-800 hover:underline">Login</Link>
         </p>
       </div>
     </div>

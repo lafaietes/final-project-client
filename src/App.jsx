@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AboutPage from "./src/Pages/AboutPage";
-import SignupPage from "./src/Pages/SignupPage";
-import LoginPage from "./src/Pages/LoginPage";
-import ThemeSelectionPage from "./src/Pages/ThemeSelectionPage";
-import ThemePage from "./src/Pages/ThemePage";
-import DayPage from "./src/Pages/DayPage";
-import HomePage from "./src/Pages/HomePage";
+import AboutPage from "./Pages/AboutPage";
+import SignupPage from "./Pages/SignupPage";
+import LoginPage from "./Pages/LoginPage";
+import ThemeSelectionPage from "./Pages/ThemeSelectionPage";
+import ThemePage from "./Pages/ThemePage";
+import DayPage from "./Pages/DayPage";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
