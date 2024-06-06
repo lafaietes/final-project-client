@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "../axiosConfig";
 import DayIcon from "../components/DayIcon";
 import Navbar from "../components/Navbar";
-import ThemeSelectionPage from "./ThemeSelectionPage";
 
+// Página para exibir os dias de um tema específico
 function ThemePage() {
   const { themeId } = useParams();
   const [themeName, setThemeName] = useState("");
@@ -28,7 +28,10 @@ function ThemePage() {
 
   useEffect(() => {
     if (currentDayRef.current) {
-      currentDayRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      currentDayRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   }, [days]);
 
@@ -41,7 +44,9 @@ function ThemePage() {
         }}
       />
       <div className="pt-24 flex flex-col items-center py-8 px-4">
-        <h1 className="text-3xl font-bold text-green-600 mb-8">Your {themeName} path</h1>
+        <h1 className="text-3xl font-bold text-green-600 mb-8">
+          Your {themeName} path
+        </h1>
         <div className="relative w-72 h-[1500px]">
           {days.length > 0 ? (
             days.map((day, index) => (
@@ -58,7 +63,9 @@ function ThemePage() {
               </React.Fragment>
             ))
           ) : (
-            <p className="text-gray-700 text-lg">No days available for this theme.</p>
+            <p className="text-gray-700 text-lg">
+              No days available for this theme.
+            </p>
           )}
         </div>
       </div>

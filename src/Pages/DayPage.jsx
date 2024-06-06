@@ -4,6 +4,7 @@ import axios from "../axiosConfig";
 import CommentCard from "../components/CommentCard";
 import Navbar from "../components/Navbar";
 
+// Página para exibir e gerenciar um dia específico de um tema
 function DayPage() {
   const { themeId, dayId } = useParams();
   const [day, setDay] = useState({});
@@ -25,9 +26,9 @@ function DayPage() {
         const dayData = response.data.days.find(
           (d) => d.day === parseInt(dayId)
         );
-        setDay(dayData);
-        setThemeName(response.data.name);
-        setComments(dayData.comments || []);
+        setDay(dayData); // Define o estado com os dados do dia
+        setThemeName(response.data.name); // Define o estado com o nome do tema
+        setComments(dayData.comments || []); // Define o estado com os comentários do dia
       } catch (error) {
         console.error("Error fetching day data: ", error);
       }
@@ -37,7 +38,7 @@ function DayPage() {
   }, [themeId, dayId]);
 
   const handleComplete = async () => {
-    setShowCommentBox(true);
+    setShowCommentBox(true); // Exibe a caixa de comentário
   };
 
   const handleCommentSubmit = async () => {
@@ -50,10 +51,10 @@ function DayPage() {
         }
       );
 
-      setComments([...comments, response.data]);
-      setComment("");
-      setShowCommentBox(false);
-      navigate(`/theme/${themeId}`);
+      setComments([...comments, response.data]); // Adiciona o novo comentário à lista de comentários
+      setComment(""); // Limpa o campo de comentário
+      setShowCommentBox(false); // Oculta a caixa de comentário
+      navigate(`/theme/${themeId}`); // Navega de volta para a página do tema
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +65,7 @@ function DayPage() {
       await axios.delete(`/comments/comment/${commentId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      setComments(comments.filter((comment) => comment._id !== commentId));
+      setComments(comments.filter((comment) => comment._id !== commentId)); // Remove o comentário da lista
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +84,7 @@ function DayPage() {
         comments.map((comment) =>
           comment._id === commentId ? response.data : comment
         )
-      );
+      ); // Atualiza o comentário na lista
     } catch (error) {
       console.error(error);
     }
@@ -147,7 +148,9 @@ function DayPage() {
           )}
           {comments.length > 0 && (
             <div className="mt-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Your feedback</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Your feedback
+              </h2>
               <div className="space-y-4">
                 {comments.map((comment) => (
                   <CommentCard
