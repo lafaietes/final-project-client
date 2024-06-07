@@ -14,14 +14,11 @@ function HomePage() {
   };
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Navbar
-        showLinks={{ about: true, login: true, signup: false }}
-      />
+      <Navbar showLinks={{ about: true, login: true, signup: false }} />
       <header
         className="relative flex items-center justify-center h-screen bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('/background.png')",
+          backgroundImage: "url('/background.png')",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -36,7 +33,7 @@ function HomePage() {
           </p>
           <Link
             to="/signup"
-            className="bg-blue-500 hover:bg-blue-600 transition duration-300 text-white font-bold py-3 px-6 rounded-full shadow-lg"
+            className="bg-emerald-700 hover:bg-emerald-500 transition duration-300 text-white font-bold py-3 px-6 rounded-full shadow-lg"
           >
             Join Us!
           </Link>
@@ -83,19 +80,21 @@ function HomePage() {
             </div>
             <div className="w-full md:w-1/3 px-6 mb-12">
               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Community Support</h3>
+                <h3 className="text-2xl font-bold mb-4">Themed trails</h3>
                 <p className="text-gray-700">
-                  Join a community of like-minded individuals who are on the
-                  same journey as you.
+                  Create or change habits by doing activities along themed
+                  trails.
                 </p>
               </div>
             </div>
             <div className="w-full md:w-1/3 px-6 mb-12">
               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Track Your Progress</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  Register your experience
+                </h3>
                 <p className="text-gray-700">
-                  Keep track of your daily activities and see your progress over
-                  the 21 days.
+                  You can record what your experience was each day, taking note
+                  that the process is the prize.
                 </p>
               </div>
             </div>

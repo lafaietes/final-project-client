@@ -47,7 +47,7 @@ function ThemePage() {
         <h1 className="text-3xl font-bold text-green-600 mb-8">
           Your {themeName} path
         </h1>
-        <div className="relative w-72 h-[1500px]">
+        <div className="relative w-72 h-[2100px]">
           {days.length > 0 ? (
             days.map((day, index) => (
               <React.Fragment key={day.day}>
